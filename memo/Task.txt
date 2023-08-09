@@ -1,0 +1,187 @@
+11일차
+
+package lambdaTask;
+
+public class LambdaTask {
+	public static void main(String[] args) {
+
+		FuncInter1 fi = (num1, num2) -> num1 * num2; 
+		//FuncInter1타입에 명fi을 생성하는데  (method a은 num1에  ,method b 는 num2로 설정하고)  -> num1 * num2; a * b를 리턴 하게 설정
+		System.out.println(fi.method(1, 2)); //method(a=num1=1,b=num2=2) 대입후 1*2값을 리턴 받아 "2"를 출력
+		//위코드는 FuncInter1안 메소드1과 2를 넣고 그것에 곱을 출력 하는 코드입니다
+		
+
+
+		FuncInter2 fi2 = (s1, s2) ->  System.out.println(s1 + s2);  
+		//FuncInter2타입을 가져오며 이름은 fi2로 = FuncInter2에 method2(String str1==s1, String str2==s2)로 받음
+		//-> 출력(String str1==s1에변수값 + String str2==s2변수값)출력 하는 생성문
+		
+		fi2.method2("안녕", "하세요");
+		//FuncInter2 fi2 = (s1, s2) ->  System.out.println(s1 + s2)를 불러와  s1="안녕" s2 ="하세요"
+		//위코드는 FuncInter2안 메소드 "안녕"과 "하세요"를 넣고  합쳐 출력 하는 코드입니다
+	}
+
+}
+
+
+package lambdaTask;
+
+@FunctionalInterface//함수형 인터페이스
+public interface FuncInter1 { //접근제한자 인터페이스 인터페이스명
+	int  method(int a, int b); //int리턴타입 method메소드(int자료형 a, int자료형 b);
+}
+//위코드는 함수형 인터페이스임을 알리고 정수를 반환하며 2개의 매개변수를 생성합니다
+
+package lambdaTask;
+
+@FunctionalInterface// 함수형인터페이스
+public interface FuncInter2 {
+	void method2(String str1, String str2); //리턴x 메소드(문자열 st1,문자열str2)를 생성하는 객체?
+}
+//위코드는 함수형 인터페이스임을 알리고 문자열을 반환하며 2개의 매개변수를 생성합니다
+
+
+
+13일차
+
+package exceptionTask;
+
+import java.util.Scanner;
+
+public class StringNumber {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("숫자입력 : ");
+		try { //try-catch문
+			String string = sc.nextLine(); //문자열 string 은 문자열을 입력받음 을 생성동시에 값을 입력 받아 저장
+			System.out.println(Integer.parseInt(string)); // 출력(문자열을 캐스팅으로 정수로 바꿈
+			// TODO: handle exception
+		} catch (NumberFormatException e) { //숫자가아닌 문자열'asdcsd'을 정수로 변환하다 오류가 남
+			System.out.println("숫자가 아닌 문자열이 입력되었습니다");//오류 메세지
+		}finally {//마지막으로
+			sc.close();//스캐너에 close
+		}
+
+	}
+}
+//위 코드는 try catch문을 사용하여 예외처리를 합니다 정상적으로 실행되면 입력받은 문자열을 정수로 변환하여 출력합니다.
+ 정수로 변환할수없는 문자열을 입력받으면 오류메세지를 출력합니다
+
+package exceptionTask;
+
+import java.util.Scanner;
+
+public class SumNumber {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("입력");
+		try {
+			int number = sc.nextInt(); //정수형 number 생성 = 정수값을 입력 받음
+			int result = 0; //정수형 result = 0 생성
+
+			for (int i = 1; i <= number; i++) { //for문 (정수 i 는 1; i값이  number이하면 true 그리고 실행;실행후 i+1)
+				result += i; //result 에 result+i값 대입
+			}
+			System.out.println(result); //출력 result값
+		} catch (Exception e) {//모든 오류를 받음
+			// TODO: handle exception
+			System.out.println("잘못된입력"); //오류 메세지
+		} finally {
+			sc.close();//스캐너 닫기
+		}
+
+	}
+}
+//위코드는 정수값을 입력 받으면 그정수값 만큼 사이클을 돌며 돌때마다 1씩 올라간 숫자를 계속 더해줍니다.
+ 정수가 아닌 값을 받으면 오류메세지를 출력합니다.
+
+
+package exceptionTask;
+
+import java.util.Scanner;
+
+public class DoubleNumber {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("정수입력 : ");
+			int num = Integer.parseInt(sc.nextLine()); // 정수형 num 생성 = 정수로 강제형변환(문자열을 입력받음);
+			
+			if (num >= 0 && num <= 100) { // 만약 num이 0이상 이고 num이 100이하이면 true반환 그리고 아래 실행
+				System.out.println(num+ "의 2배는 " +
+			(num*2)+"입니다");
+				//출력
+			} 
+//			else {//false일때
+//				throws new Exception("잘못된입력입니다");
+//			}
+			
+		} catch (Exception e) {//모든 오류예외처리
+			// TODO: handle exception
+			
+			  e.printStackTrace();//Exception 에 printStackTrace()를 불러옵니다
+			System.out.println(e.getMessage()); //Exception 에 e.getMessage()를 출력합니다
+		}finally {
+			sc.close();
+		}
+		
+	}
+}
+//위코드는 문자열로 입력받은 값을 강제형변환하여 값을 정수로바꾸고 출력문에서 형변환한값에 2배를 알려주는 문장을 출력합니다.
+  예외처리로는 형변환이 불가한 값을 받으면 입력받은 값을 다시 출력합니다
+
+
+package WrapperTest;
+
+import java.util.Arrays;
+
+public class WrapperTask {
+	public static void main(String[] args) {
+		
+		//아래 있는 값들을 하나의 배열에 담기
+		//String[] 배열은 사용 금지
+		//1, 4.25, 'b', "Cat", "JAVA", true
+		
+		Integer num = Integer.valueOf(1);
+		Double num2 = Double.valueOf(4.25);
+
+		Object[] obj1 = {num, num2, 'b', "Cat", "JAVA", true};
+		Object[] obj = {1, 4.25, 'b', "Cat", "JAVA", true};
+		System.out.println(obj);
+//		for(Object i : obj) {
+//			System.out.println(i);
+//		}
+		
+		System.out.println(Arrays.toString(obj));
+	}
+}
+
+package list;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
+public class ArrayListTask {
+	public static void main(String[] args) {
+
+		Random r = new Random(); //랜덤타입에 r = 생성자 랜덤값
+		ArrayList<Integer> al = new ArrayList<>(); 
+		//ArrayList에<형변환Integer>/*정수로쓴다?*/ al객체 =대입 new생성자 <>생성타입 ()
+		int count = 0; //카운트는 0
+
+		while (count < 7) { //반복 count가 7미만이면 true
+			int num = r.nextInt(30) + 1; //정수num에 0~30랜덤값 + 1 대입
+			if (!al.contains(num)) { // 만약 al목록중에 num값존재 여부가 false이면 true로 반환
+				al.add(num); //al목록에 num값을 추가한다
+				count++;//count 증감식
+			}
+		}
+
+		System.out.println(al);
+		Collections.sort(al);//al목록을 오름차순으로 정렬
+		System.out.println(al);
+	}
+}
+//위코드는 ArrayList al정수를 받는 객체를 생성한후 난수(1~30) 7개를 중복없이 목록에 저장한후 오름차순으로 정렬후 출력합니다 

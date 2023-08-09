@@ -1,0 +1,50 @@
+웹개발2 day02
+문제풀이 -> 코드해석 -> DBMS
+
+StringBuilder
+	기존의 데이터에 더하는 방식을 사용하여 속도가 빠르고 상대적으로 부하가 적다
+	
+메소드
+	.append() 문자열을 추가하는 메소드
+		sb.append("a"), sb.append(1)
+	.insert(int offset, String str) offset 위치에 str을 추가한다
+		sb.insert(2,"b")
+	.replace()	첫번째와 두번째 피라미터로 받는 숫자 인덱스에 위치한 문자열을 대체한다
+		sb.replace(1,2,"c")
+	.substring()	파라미터가 하나라면 해당 인덱스부터 끝까지
+			파라미터가 두개라면 시작점부터 종료 -1까지 인덱싱
+	.delete(int start, int end) start부터 end-1까지 문자를 지웁니다
+
+
+
+String
+	immutable 불변 객체
+	String st1 = "abc", st2 = "def", st3 = "ghi"
+	st1 + st2 + st3 새로운 String이 생성된다
+	+ 연결연산자를 사용하면 메모리 할당과 메모리 해제 발생시키고 더하는 연산이 많아진다면 성능적으로 떨어진다
+
+예외 클래스
+	InputMismatchExceptiuon
+		사용자나 스캐너가 제공하는 입력이 예상한 타입이나 형식과 일치하지 않을때 발생하는 java예외클래스
+		nextInt(), nextDouble() , nextLine() 등 사용자의 입력을 읽을때 발생함
+
+JAVA 내용
+출력 메소드
+변수
+연산자
+제어문
+배욜
+메소드			기능
+클래스			타입, 추상 ,공통요소를 하나로 묶기
+추상클래스.
+인터페이스.
+입명클래스
+예외처리
+API.
+컬레션 프레임워크.
+쓰레드.
+Data
+File.
+ 
+
+			
